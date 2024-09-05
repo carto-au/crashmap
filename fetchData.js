@@ -1,12 +1,21 @@
 const fs = require("fs");
 const xlsx = require("xlsx");
 
-const FILE_PREFIX = "NSW_Road_Crash_Data_2018-2022_";
+const sourceFilePaths = {
+  2022: {
+    trafficUnit: "nsw_road_crash_data_2018-2022_traffic_unit.xlsx",
+    crash: "nsw_road_crash_data_2018-2022_crash.xlsx",
+  },
+  // TODO: Is it possible to join the 2017 data into the new data?
+  2021: {
+    trafficUnit: "NSW_Road_Crash_Data_2017-2021_TRAFFIC_UNITt.xlsx",
+    crash: "NSW_Road_Crash_Data_2017-2021_CRASH.xlsx",
+  },
+};
 
-// TODO: Is it possible to join the 2017 data into the new data?
-const OLD_FILE_PREFIX = "NSW_Road_Crash_Data_2017-2021_";
-
-const trafficUnitData = getJsonFromExcelFile(FILE_PREFIX + "TRAFFIC_UNIT.xlsx");
+const trafficUnitData = getJsonFromExcelFile(
+  sourceFilePaths["2022"].trafficUnit
+);
 console.log(trafficUnitData[0]);
 const trafficUnitsByCrashId = {};
 trafficUnitData.forEach((trafficUnitRow) => {
@@ -15,7 +24,7 @@ trafficUnitData.forEach((trafficUnitRow) => {
   trafficUnitsByCrashId[crashId].push(trafficUnitRow);
 });
 
-const crashData = getJsonFromExcelFile(FILE_PREFIX + "CRASH.xlsx");
+const crashData = getJsonFromExcelFile(sourceFilePaths["2022"].crash);
 console.log(crashData[0]);
 console.time("Map crashes");
 const crashes = crashData
