@@ -1,7 +1,10 @@
 const fs = require("fs");
 const xlsx = require("xlsx");
 
-const FILE_PREFIX = "NSW_Road_Crash_Data_2017-2021_";
+const FILE_PREFIX = "nsw_road_crash_data_2018-2022_";
+
+// TODO: Is it possible to join the 2017 data into the new data?
+const OLD_FILE_PREFIX = "NSW_Road_Crash_Data_2017-2021_";
 
 const trafficUnitData = getJsonFromExcelFile(FILE_PREFIX + "TRAFFIC_UNIT.xlsx");
 console.log(trafficUnitData[0]);
