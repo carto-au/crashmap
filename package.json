@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@mapbox/togeojson": "^0.16.0",
-    "@vue-leaflet/vue-leaflet": "^0.6.1",
-    "leaflet": "^1.8.0",
+    "maplibre-gl": "^5.6.1",
+    "pmtiles": "^4.3.0",
     "sass": "^1.50.1",
     "vue": "^3.2.25",
     "vue-router": "^4.0.14",

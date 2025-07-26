@@ -140,7 +140,13 @@ export default {
   components: { WelcomeContent, InlineColorDot },
   computed: {
     crash() {
-      return this.$store.state.currentCrash;
+      return this.$store.state.currentCrash
+        ? {
+            ...this.$store.state.currentCrash.properties,
+            lon: this.$store.state.currentCrash.geometry.coordinates[0],
+            lat: this.$store.state.currentCrash.geometry.coordinates[1],
+          }
+        : null;
     },
     isDev() {
       return window.location.hostname === "localhost";
