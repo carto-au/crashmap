@@ -3,7 +3,13 @@
 </template>
 
 <script>
-import { Map, addProtocol } from "maplibre-gl";
+import {
+  Map,
+  addProtocol,
+  NavigationControl,
+  ScaleControl,
+  GeolocateControl,
+} from "maplibre-gl";
 import { Protocol } from "pmtiles";
 import { toRaw } from "vue";
 import { DEGREE_COLOR_MAP } from "../constants";
@@ -51,6 +57,17 @@ export default {
 
       // Register this BEFORE the other click handlers so it doesn't set currentCrash to null after setting to value
       map.on("click", handleClick);
+
+      map.addControl(new NavigationControl({}));
+      map.addControl(new ScaleControl({}));
+      map.addControl(
+        new GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true,
+          },
+          trackUserLocation: true,
+        }),
+      );
 
       map.addSource("crashes", {
         type: "vector",
