@@ -104,8 +104,8 @@
             unit.role === 'Key traffic unit'
               ? '#630'
               : unit.role === 'Other traffic unit'
-              ? '#0066fd'
-              : 'transparent'
+                ? '#0066fd'
+                : 'transparent'
           "
         />
       </h5>

@@ -141,7 +141,7 @@ export default {
           fillOpacity: 0.8,
           // Business logic option, not a leaflet option:
           crashId: crash.id,
-        })
+        }),
       );
 
       const featureGroup = L.featureGroup(markersArray).addTo(map);

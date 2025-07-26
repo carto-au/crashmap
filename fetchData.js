@@ -14,7 +14,7 @@ const sourceFilePaths = {
 };
 
 const trafficUnitData = getJsonFromExcelFile(
-  sourceFilePaths["2022"].trafficUnit
+  sourceFilePaths["2022"].trafficUnit,
 );
 console.log(trafficUnitData[0]);
 const trafficUnitsByCrashId = {};
@@ -31,7 +31,7 @@ const crashes = crashData
   .filter(
     (crashRow) =>
       crashRow["Key TU type"] === "Pedal cycle" ||
-      crashRow["Other TU type"] === "Pedal cycle"
+      crashRow["Other TU type"] === "Pedal cycle",
   )
   .map((crashRow) => ({
     id: crashRow["Crash ID"],
@@ -39,7 +39,7 @@ const crashes = crashData
     lon: crashRow["Longitude"],
     deg: crashRow["Degree of crash - detailed"],
     streetName: capitalise(
-      crashRow["Street of crash"] + " " + crashRow["Street type"]
+      crashRow["Street of crash"] + " " + crashRow["Street type"],
     ),
     suburb: capitalise(crashRow["Town"]),
     month: crashRow["Month of crash"],
@@ -70,20 +70,20 @@ const crashes = crashData
         street:
           trafficUnitRow["Street of travel"] === "Street of crash"
             ? capitalise(
-                crashRow["Street of crash"] + " " + crashRow["Street type"]
+                crashRow["Street of crash"] + " " + crashRow["Street type"],
               )
             : trafficUnitRow["Street of travel"] === "In ID feature"
-            ? capitalise(
-                crashRow["Identifying feature"] +
-                  " " +
-                  crashRow["Identifying feature type"]
-              )
-            : trafficUnitRow["Street of travel"],
+              ? capitalise(
+                  crashRow["Identifying feature"] +
+                    " " +
+                    crashRow["Identifying feature type"],
+                )
+              : trafficUnitRow["Street of travel"],
         direction: trafficUnitRow["Direction of travel"],
         status: trafficUnitRow["Manoeuvre"],
         objectHit1: trafficUnitRow["Object hit 1"],
         objectHit2: trafficUnitRow["Object hit 1"],
-      })
+      }),
     ),
     // All values, for development purposes. Remove later:
     data: process.env.DEVELOPMENT ? crashRow : undefined,
@@ -95,7 +95,7 @@ console.timeEnd("Map crashes");
 console.time("Write crashes file");
 fs.writeFileSync(
   `${__dirname}/src/data/built/crashes.json`,
-  JSON.stringify(crashes)
+  JSON.stringify(crashes),
 );
 console.timeEnd("Write crashes file");
 
@@ -113,7 +113,7 @@ function capitalise(str) {
   return str
     .split(" ")
     .map(
-      (chunk) => chunk.slice(0, 1).toUpperCase() + chunk.slice(1).toLowerCase()
+      (chunk) => chunk.slice(0, 1).toUpperCase() + chunk.slice(1).toLowerCase(),
     )
     .join(" ");
 }

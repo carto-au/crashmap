@@ -42,13 +42,13 @@ export default {
       console.log(fileContents);
       const parsedFileContents = new DOMParser().parseFromString(
         fileContents,
-        "text/xml"
+        "text/xml",
       );
       const geojson = toGeojson.gpx(parsedFileContents);
       console.log(geojson);
 
       const routeCoords = geojson?.features?.[0]?.geometry?.coordinates?.map?.(
-        (c) => [c[1], c[0]] // Coords are in reverse
+        (c) => [c[1], c[0]], // Coords are in reverse
       );
       console.log(routeCoords);
 

@@ -24,7 +24,7 @@ for (let row = 0; row < ROWS; row++) {
         `${__dirname}/public/rum/${row + col * 10}.png`,
         () => {
           // console.log("saved!");
-        }
+        },
       );
     });
   }
