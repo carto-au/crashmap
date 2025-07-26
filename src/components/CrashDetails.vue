@@ -145,6 +145,7 @@ export default {
             ...this.$store.state.currentCrash.properties,
             lon: this.$store.state.currentCrash.geometry.coordinates[0],
             lat: this.$store.state.currentCrash.geometry.coordinates[1],
+            units: JSON.parse(this.$store.state.currentCrash.properties.units),
           }
         : null;
     },
