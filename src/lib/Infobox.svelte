@@ -41,7 +41,7 @@
   {/snippet}
 
   {#snippet staticFooter()}
-    <div class="p-3 pt-1.5">
+    <div class="px-3 py-1.5 sm:pb-3">
       <div class="text-xs">
         Built by <a href="https://carto.au" target="_blank">Carto Australia</a>.
         Data from
