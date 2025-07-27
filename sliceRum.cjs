@@ -1,7 +1,4 @@
-const Clipper = require("image-clipper");
-const Canvas = require("canvas");
-const clipper = Clipper();
-clipper.injectNodeCanvas(Canvas);
+const sharp = require("sharp");
 
 const ROWS = 10;
 const COLS = 10;
@@ -19,13 +16,13 @@ for (let row = 0; row < ROWS; row++) {
 
     console.log({ row, col, startX, startY });
 
-    clipper.image(__dirname + "/static/rumTable.png", function () {
-      this.crop(startX, startY, SLICE_WIDTH, SLICE_HEIGHT).toFile(
-        `${__dirname}/static/rum/${row + col * 10}.png`,
-        () => {
-          // console.log("saved!");
-        },
-      );
-    });
+    sharp(__dirname + "/static/rumTable.png")
+      .extract({
+        left: startX,
+        top: startY,
+        width: SLICE_WIDTH,
+        height: SLICE_HEIGHT,
+      })
+      .toFile(`${__dirname}/static/rum/${row + col * 10}.png`);
   }
 }
