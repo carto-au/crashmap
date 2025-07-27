@@ -39,7 +39,7 @@
   );
 </script>
 
-<div>
+<div class="textual-content">
   <h3>
     Cycle crash on {crash.streetName}, {crash.suburb} in
     {crash.month}
@@ -120,17 +120,16 @@
       <dd>{crash.rumDescription}</dd>
     </div>
     <img
-      class="border"
+      class="border rounded-lg"
       src={`/rum/${crash.rumCode}.png`}
       alt={crash.rumDescription}
       width="141"
       height="105"
     />
   </dl>
-
   {#each crash.units as unit (unit.id)}
-    <div class="mb-2 rounded-lg border border-gray-800 p-2">
-      <h5>
+    <div class="mb-2 rounded-lg border border-gray-300 p-2">
+      <h5 class="font-bold">
         <u>Participant {unit.id}</u>
         <InlineColorDot
           color={unit.role === "Key traffic unit"
@@ -164,27 +163,3 @@
     </details>
   {/if}
 </div>
-
-<!-- <style lang="scss">
-
-	.crash-details {
-		pre {
-			overflow-x: auto;
-		}
-
-		h3 {
-			margin-top: 0;
-		}
-
-		h4 {
-			font-size: 1.05rem;
-			margin-bottom: 0.5rem;
-		}
-
-		h5 {
-			font-size: 0.9rem;
-			margin-top: 0;
-			margin-bottom: 0.5em;
-		}
-	}
-</style> -->

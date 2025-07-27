@@ -3,7 +3,7 @@
   import InlineColorDot from "./InlineColorDot.svelte";
 </script>
 
-<div class="welcome-content">
+<div class="textual-content">
   <h3>Welcome!</h3>
   <p>
     This map shows crashes that occurred between 2018-2022 involving
