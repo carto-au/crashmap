@@ -118,7 +118,7 @@
          <InlineColorDot color={DEGREE_COLOR_MAP["Minor/Other Injury"]}/> {crash.minorInjuries} minorly injured
         {/if}
         {#if crash.fatalities+crash.seriousInjuries+crash.moderateInjuries+crash.minorInjuries===0}
-        None
+        No injuries
         {/if}
       </dd>
     </div>
