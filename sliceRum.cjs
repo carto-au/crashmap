@@ -19,9 +19,9 @@ for (let row = 0; row < ROWS; row++) {
 
     console.log({ row, col, startX, startY });
 
-    clipper.image(__dirname + "/public/rumTable.png", function () {
+    clipper.image(__dirname + "/static/rumTable.png", function () {
       this.crop(startX, startY, SLICE_WIDTH, SLICE_HEIGHT).toFile(
-        `${__dirname}/public/rum/${row + col * 10}.png`,
+        `${__dirname}/static/rum/${row + col * 10}.png`,
         () => {
           // console.log("saved!");
         },
