@@ -27,73 +27,70 @@ body {
   overscroll-behavior: none;
 }
 
-
 @layer components {
   .textual-content {
-> :first-child {
-  margin-top: 0;
-}
+    > :first-child {
+      margin-top: 0;
+    }
 
     a {
-  font-weight: 600;
-}
+      font-weight: 600;
+    }
 
-  pre {
-    overflow-x: auto;
-  }
+    pre {
+      overflow-x: auto;
+    }
 
-  p {
-    margin: 1rem 0;
-  }
+    p {
+      margin: 1rem 0;
+    }
 
-  h3 {
-    font-size: 1.17rem;
-    font-weight: bold;
-    margin: 1rem 0;
-  }
+    h3 {
+      font-size: 1.17rem;
+      font-weight: bold;
+      margin: 1rem 0;
+    }
 
-  h4 {
-    font-size: 1.05rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-
-  h5 {
-    font-size: 0.9rem;
-    margin-top: 0;
-    margin-bottom: 0.5em;
-  }
-
-
-dl {
-  margin: 0;
-
-  &:not(:last-child) {
-    margin-bottom: 0.5rem;
-  }
-
-  > div {
-    font-size: 0.9rem;
-
-    &:not(:last-child) {
+    h4 {
+      font-size: 1.05rem;
+      font-weight: bold;
       margin-bottom: 0.5rem;
     }
 
-    dt {
-      display: inline;
-      font-weight: 600;
+    h5 {
+      font-size: 0.9rem;
+      margin-top: 0;
+      margin-bottom: 0.5em;
+    }
 
-      &:after {
-        content: ": ";
+    dl {
+      margin: 0;
+
+      &:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+
+      > div {
+        font-size: 0.9rem;
+
+        &:not(:last-child) {
+          margin-bottom: 0.5rem;
+        }
+
+        dt {
+          display: inline;
+          font-weight: 600;
+
+          &:after {
+            content: ": ";
+          }
+        }
+
+        dd {
+          display: inline;
+          margin: 0;
+        }
       }
     }
-
-    dd {
-      display: inline;
-      margin: 0;
-    }
-  }
-}
-
   }
 }

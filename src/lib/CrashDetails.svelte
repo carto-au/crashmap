@@ -120,7 +120,7 @@
       <dd>{crash.rumDescription}</dd>
     </div>
     <img
-      class="border rounded-lg"
+      class="rounded-lg border"
       src={`/rum/${crash.rumCode}.png`}
       alt={crash.rumDescription}
       width="141"
