@@ -2,6 +2,7 @@
   import type { Feature } from "./types";
   import InlineColorDot from "./InlineColorDot.svelte";
   import { listIfExists } from "./utils";
+    import { DEGREE_COLOR_MAP } from "./constants";
 
   interface Props {
     feature: Feature;
@@ -104,15 +105,21 @@
     <div>
       <dt>Impact</dt>
       <dd>
-        {listIfExists([
-          crash.fatalities &&
-            crash.fatalities +
-              (crash.fatalities > 1 ? " fatalities" : " fatality"),
-          crash.seriousInjuries && crash.seriousInjuries + " seriously injured",
-          crash.moderateInjuries &&
-            crash.moderateInjuries + " moderately injured",
-          crash.minorInjuries && crash.minorInjuries + " minorly injured",
-        ]) || "None"}
+        {#if crash.fatalities}
+         <InlineColorDot color={DEGREE_COLOR_MAP["Fatal"]}/> {crash.fatalities} {crash.fatalities > 1 ? " fatalities" : " fatality"}
+        {/if}
+        {#if crash.seriousInjuries}
+         <InlineColorDot color={DEGREE_COLOR_MAP["Serious Injury"]}/> {crash.seriousInjuries} seriously injured
+        {/if}
+        {#if crash.moderateInjuries}
+         <InlineColorDot color={DEGREE_COLOR_MAP["Moderate Injury"]}/> {crash.moderateInjuries} moderately injured
+        {/if}
+        {#if crash.minorInjuries}
+         <InlineColorDot color={DEGREE_COLOR_MAP["Minor/Other Injury"]}/> {crash.minorInjuries} minorly injured
+        {/if}
+        {#if crash.fatalities+crash.seriousInjuries+crash.moderateInjuries+crash.minorInjuries===0}
+        None
+        {/if}
       </dd>
     </div>
     <div>
