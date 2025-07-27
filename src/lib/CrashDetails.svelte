@@ -106,7 +106,7 @@
       <dt>Impact</dt>
       <dd>
         {#if crash.fatalities}
-         <InlineColorDot color={DEGREE_COLOR_MAP["Fatal"]}/> {crash.fatalities} {crash.fatalities > 1 ? " fatalities" : " fatality"}
+         <InlineColorDot color={DEGREE_COLOR_MAP["Fatal"]}/> {crash.fatalities} {crash.fatalities > 1 ? " fatalities" : " fatality"} (<a href={`https://www.google.com/search?q=${encodeURIComponent(`Fatality ${crash.streetName} ${crash.suburb} ${crash.month} ${crash.year}`)}`} target="_blank">search ↗</a>)
         {/if}
         {#if crash.seriousInjuries}
          <InlineColorDot color={DEGREE_COLOR_MAP["Serious Injury"]}/> {crash.seriousInjuries} seriously injured
