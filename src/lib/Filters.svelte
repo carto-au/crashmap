@@ -20,7 +20,7 @@
   }
   const { onfilterchange }: Props = $props();
 
-  let degrees = $state(CRASH_DEGREES);
+  let degrees = $state([CrashDegree.Fatal, CrashDegree.Serious]);
   let degreesDisplay = $derived(
     degrees.length === 0
       ? "None"
@@ -59,7 +59,7 @@
 
 <div>
   <div class="flex flex-col gap-2">
-    <ExpandableFilter displayName="Severity" displayValue={degreesDisplay}>
+    <ExpandableFilter displayName="Injury" displayValue={degreesDisplay}>
       <MultiCheckboxes
         options={CRASH_DEGREES}
         onchange={(values) => {

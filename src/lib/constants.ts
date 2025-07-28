@@ -33,7 +33,7 @@ export const DEGREE_COLOR_MAP = {
 };
 
 export const DEGREE_SHORTNAME_MAP = {
-  [CrashDegree.NonCasualty]: "No casualty",
+  [CrashDegree.NonCasualty]: "No injury",
   [CrashDegree.Minor]: "Minor",
   [CrashDegree.Moderate]: "Moderate",
   [CrashDegree.Serious]: "Serious",
