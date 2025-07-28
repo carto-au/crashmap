@@ -40,12 +40,15 @@
   </p>
   <dl>
     <div>
-      <dt><InlineColorDot color={DEGREE_COLOR_MAP[CrashDegree.Fatal]} /> Fatal</dt>
+      <dt>
+        <InlineColorDot color={DEGREE_COLOR_MAP[CrashDegree.Fatal]} /> Fatal
+      </dt>
       <dd>Someone was killed</dd>
     </div>
     <div>
       <dt>
-        <InlineColorDot color={DEGREE_COLOR_MAP[CrashDegree.Serious]} /> Serious Injury
+        <InlineColorDot color={DEGREE_COLOR_MAP[CrashDegree.Serious]} /> Serious
+        Injury
       </dt>
       <dd>
         Someone was admitted to hospital on the same day or day after the crash

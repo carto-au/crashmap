@@ -17,7 +17,7 @@
   let error = $state(false);
 
   $effect(() => {
-    getCrashData(feature.id)
+    getCrashData(feature.properties.p) // Parquet row num property
       .then((data) => {
         crashData = data;
       })
@@ -29,12 +29,12 @@
 
   let crash = $derived(
     crashData
-      ? {
+      ? ({
           ...crashData,
           id: feature.id,
           lon: feature.geometry.coordinates[0],
           lat: feature.geometry.coordinates[1],
-      } as Record<string,any>
+        } as Record<string, any>)
       : null,
   );
 

@@ -1,19 +1,25 @@
-import { unzip, HTTPRangeReader, type ZipEntry } from "unzipit";
+import {
+  asyncBufferFromUrl,
+  parquetReadObjects,
+  type AsyncBuffer,
+} from "hyparquet";
 
-// This download is about 8MB so persist for the entire browser session
-let zipEntriesIndex: Record<string, ZipEntry> | null = null;
+const API_FILE_URL = "https://src.carto.au/crashes.parquet";
 
-async function getZipEntriesIndex() {
-  const reader = new HTTPRangeReader("https://src.carto.au/crashes.api.zip");
-  const { entries } = await unzip(reader);
-  return entries;
-}
+// Cache file object within session to save HEAD on requests
+let file: AsyncBuffer | null = null;
 
-export async function getCrashData(crashId: number) {
-  if (!zipEntriesIndex) zipEntriesIndex = await getZipEntriesIndex();
+export async function getCrashData(parquetRowNum: number) {
+  if (!file) file = await asyncBufferFromUrl({ url: API_FILE_URL });
 
-  const encodedCrashId = Number(crashId).toString(36); // ZIP API stores crash IDs in b36 to save central dir space
+  const rows = await parquetReadObjects({
+    file,
+    columns: ["data"],
+    rowStart: parquetRowNum,
+    rowEnd: parquetRowNum + 1,
+  });
 
-  const json = await zipEntriesIndex[encodedCrashId].json();
-  return json;
+  const parsedData = JSON.parse(rows[0].data);
+
+  return parsedData;
 }
