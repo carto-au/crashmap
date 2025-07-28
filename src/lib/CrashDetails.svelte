@@ -2,7 +2,7 @@
   import type { Feature } from "./types";
   import InlineColorDot from "./InlineColorDot.svelte";
   import { listIfExists } from "./utils";
-  import { DEGREE_COLOR_MAP } from "./constants";
+  import { CrashDegree, DEGREE_COLOR_MAP } from "./constants";
   import { getCrashData } from "./api";
 
   interface Props {
@@ -13,7 +13,7 @@
 
   const isDev = window.location.hostname === "localhost";
 
-  let crashData: null | Record<string, any> = $state(null);
+  let crashData = $state(null) as null | Record<string, any>;
   let error = $state(false);
 
   $effect(() => {
@@ -34,7 +34,7 @@
           id: feature.id,
           lon: feature.geometry.coordinates[0],
           lat: feature.geometry.coordinates[1],
-        }
+      } as Record<string,any>
       : null,
   );
 
@@ -43,7 +43,7 @@
       On: "Street lighting on",
       Off: "Street lighting off",
       Nil: "No street lighting",
-    }[crash.streetLighting as string] ?? "Street lighting unknown",
+    }[crash?.streetLighting as string] ?? "Street lighting unknown",
   );
   let surfaceConditionText = $derived(
     {
@@ -51,7 +51,7 @@
       Wet: "Road surface wet",
       "Snow or ice": "Road surface snowy or icy",
       "Unknown / not stated": null,
-    }[crash.surfaceCondition as string] ?? "Road surface condition unknown",
+    }[crash?.surfaceCondition as string] ?? "Road surface condition unknown",
   );
 </script>
 
@@ -126,7 +126,7 @@
         <dt>Impact</dt>
         <dd>
           {#if crash.fatalities}
-            <InlineColorDot color={DEGREE_COLOR_MAP["Fatal"]} />
+            <InlineColorDot color={DEGREE_COLOR_MAP[CrashDegree.Fatal]} />
             {crash.fatalities}
             {crash.fatalities > 1 ? " fatalities" : " fatality"} (<a
               href={`https://www.google.com/search?q=${encodeURIComponent(`Fatality ${crash.streetName} ${crash.suburb} ${crash.month} ${crash.year}`)}`}
@@ -134,15 +134,15 @@
             >)
           {/if}
           {#if crash.seriousInjuries}
-            <InlineColorDot color={DEGREE_COLOR_MAP["Serious Injury"]} />
+            <InlineColorDot color={DEGREE_COLOR_MAP[CrashDegree.Serious]} />
             {crash.seriousInjuries} seriously injured
           {/if}
           {#if crash.moderateInjuries}
-            <InlineColorDot color={DEGREE_COLOR_MAP["Moderate Injury"]} />
+            <InlineColorDot color={DEGREE_COLOR_MAP[CrashDegree.Moderate]} />
             {crash.moderateInjuries} moderately injured
           {/if}
           {#if crash.minorInjuries}
-            <InlineColorDot color={DEGREE_COLOR_MAP["Minor/Other Injury"]} />
+            <InlineColorDot color={DEGREE_COLOR_MAP[CrashDegree.Minor]} />
             {crash.minorInjuries} minorly injured
           {/if}
           {#if crash.fatalities + crash.seriousInjuries + crash.moderateInjuries + crash.minorInjuries === 0}

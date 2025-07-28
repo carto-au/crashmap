@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { DEGREE_COLOR_MAP } from "./constants";
+  import { CrashDegree, DEGREE_COLOR_MAP } from "./constants";
   import InlineColorDot from "./InlineColorDot.svelte";
 </script>
 
@@ -40,12 +40,12 @@
   </p>
   <dl>
     <div>
-      <dt><InlineColorDot color={DEGREE_COLOR_MAP["Fatal"]} /> Fatal</dt>
+      <dt><InlineColorDot color={DEGREE_COLOR_MAP[CrashDegree.Fatal]} /> Fatal</dt>
       <dd>Someone was killed</dd>
     </div>
     <div>
       <dt>
-        <InlineColorDot color={DEGREE_COLOR_MAP["Serious Injury"]} /> Serious Injury
+        <InlineColorDot color={DEGREE_COLOR_MAP[CrashDegree.Serious]} /> Serious Injury
       </dt>
       <dd>
         Someone was admitted to hospital on the same day or day after the crash
@@ -53,7 +53,7 @@
     </div>
     <div>
       <dt>
-        <InlineColorDot color={DEGREE_COLOR_MAP["Moderate Injury"]} />
+        <InlineColorDot color={DEGREE_COLOR_MAP[CrashDegree.Moderate]} />
         Moderate Injury
       </dt>
       <dd>
@@ -63,7 +63,7 @@
     </div>
     <div>
       <dt>
-        <InlineColorDot color={DEGREE_COLOR_MAP["Minor/Other Injury"]} />
+        <InlineColorDot color={DEGREE_COLOR_MAP[CrashDegree.Minor]} />
         Minor/Other Injury
       </dt>
       <dd>
@@ -73,7 +73,7 @@
     </div>
     <div>
       <dt>
-        <InlineColorDot color={DEGREE_COLOR_MAP["Uncategorised Injury"]} />
+        <InlineColorDot color="black" />
         Uncategorised Injury
       </dt>
       <dd>
@@ -83,7 +83,7 @@
     </div>
     <div>
       <dt>
-        <InlineColorDot color={DEGREE_COLOR_MAP["Non-casualty (towaway)"]} />
+        <InlineColorDot color={DEGREE_COLOR_MAP[CrashDegree.NonCasualty]} />
         Non-casualty (towaway)
       </dt>
       <dd>

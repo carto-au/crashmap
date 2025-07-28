@@ -95,7 +95,7 @@
   });
 </script>
 
-<div class="map" id="map" bind:this={mapContainer} />
+<div class="map" id="map" bind:this={mapContainer}></div>
 
 <style>
   .map {
