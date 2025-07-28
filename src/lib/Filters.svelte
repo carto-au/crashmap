@@ -12,6 +12,7 @@
     ROAD_USER_SHORTNAME_MAP,
     ROAD_USERS,
     RoadUser,
+    RoadUsersMode,
   } from "./constants";
   import type { FilterSpecification } from "maplibre-gl";
 
@@ -33,22 +34,28 @@
             .join(", "),
   );
 
+  let roadUsersMode = $state(RoadUsersMode.Or) as RoadUsersMode;
   let roadUsers = $state(ROAD_USERS);
   let roadUsersDisplay = $derived(
     roadUsers.length === 0
       ? "None"
       : roadUsers.length === ROAD_USERS.length
-        ? "Any road user"
+        ? roadUsersMode === RoadUsersMode.And
+          ? "All road users"
+          : "Any road user"
         : // Filter ROAD_USERS rather than just using roadUsers so it will always display in the 'right' order
           // as MultiCheckboxes makes no guarantees around ordering
           ROAD_USERS.filter((r) => roadUsers.includes(r))
             .map((r) => ROAD_USER_SHORTNAME_MAP[r])
-            .join(", "),
+            .join(roadUsersMode === RoadUsersMode.And ? " & " : ", "),
   );
 
   let maplibreFilter: FilterSpecification = $derived([
     "all",
-    ["any", ...roadUsers.map((r) => ["in", r, ["get", "u"]])],
+    [
+      roadUsersMode === RoadUsersMode.And ? "all" : "any",
+      ...roadUsers.map((r) => ["in", r, ["get", "u"]]),
+    ],
     ["in", ["get", "s"], ["literal", degrees]],
   ]);
 
@@ -74,6 +81,28 @@
       </MultiCheckboxes>
     </ExpandableFilter>
     <ExpandableFilter displayName="Involving" displayValue={roadUsersDisplay}>
+      <fieldset class="mb-1">
+        <label>
+          <input
+            type="radio"
+            name="mode"
+            onchange={(e) => {
+              if (e.currentTarget.checked) roadUsersMode = RoadUsersMode.Or;
+            }}
+            checked
+          /> Any of
+        </label>
+        &nbsp;
+        <label>
+          <input
+            type="radio"
+            name="mode"
+            onchange={(e) => {
+              if (e.currentTarget.checked) roadUsersMode = RoadUsersMode.And;
+            }}
+          /> All of
+        </label>
+      </fieldset>
       <MultiCheckboxes
         options={ROAD_USERS}
         onchange={(values) => {

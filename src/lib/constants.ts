@@ -40,6 +40,11 @@ export const DEGREE_SHORTNAME_MAP = {
   [CrashDegree.Fatal]: "Fatal",
 };
 
+export enum RoadUsersMode {
+  Or,
+  And,
+}
+
 export enum RoadUser {
   Pedestrian,
   Bicycle,

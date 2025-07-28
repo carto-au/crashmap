@@ -4,8 +4,9 @@
 </script>
 
 <div class="textual-content">
-  <p>This map shows crashes from 2016 to 2023 that were reported to the police and involved an
-    injury or tow-away.
+  <p>
+    This map shows crashes from 2016 to 2023 that were reported to the police
+    and involved an injury or tow-away.
   </p>
   <!-- <ul>
       <li>Were reported to police</li>
@@ -17,7 +18,9 @@
       </li>
     </ul> -->
   <p>
-    <strong>Select on a dot on the map to see more information about the crash.</strong>
+    <strong
+      >Select on a dot on the map to see more information about the crash.</strong
+    >
   </p>
   <dl>
     <div>
@@ -76,8 +79,8 @@
       </dd>
     </div>
   </dl>
-    <em class="text-sm">
-      *These definitions have been shortened for simplicity. See the
-      <a href="/data-manual.pdf" target="_blank">data manual</a> (pg4) for full definitions.
-    </em>
+  <em class="text-sm">
+    *These definitions have been shortened for simplicity. See the
+    <a href="/data-manual.pdf" target="_blank">data manual</a> (pg4) for full definitions.
+  </em>
 </div>
