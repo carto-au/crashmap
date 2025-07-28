@@ -4,17 +4,7 @@
 </script>
 
 <div class="textual-content">
-  <h3>Welcome!</h3>
-  <p>
-    This map shows crashes that occurred between 2016-2023 involving
-    <strong>bicycles</strong>.
-  </p>
-  <p>
-    The data was collected by
-    <a
-      href="https://roadsafety.transport.nsw.gov.au/statistics/interactivecrashstats/lga_stats.html?r=eyJrIjoiMDA3OGRhN2UtZjRkNy00N2JmLWE0MjMtZmIyNzFiOTdmMjI3IiwidCI6ImNiMzU2NzgyLWFkOWEtNDdmYi04NzhiLTdlYmNlYjg1Yjg2YyJ9&pageName=ReportSectiona5a83b637554074c1384"
-      target="_blank">Transport for NSW</a
-    >. It only includes crashes that were reported to the police and involved an
+  <p>This map shows crashes from 2016 to 2023 that were reported to the police and involved an
     injury or tow-away.
   </p>
   <!-- <ul>
@@ -27,16 +17,7 @@
       </li>
     </ul> -->
   <p>
-    The dots on the map show the locations of crashes.
-    <strong>Click on a dot to see more information about the crash.</strong>
-    Dots are coloured based on the severity of the crash, as defined below.
-  </p>
-  <h3>Crash severities</h3>
-  <p>
-    <em>
-      *These definitions are summarised for simplicity. See the
-      <a href="/data-manual.pdf" target="_blank">data manual</a> (pg4) for full definitions.
-    </em>
+    <strong>Select on a dot on the map to see more information about the crash.</strong>
   </p>
   <dl>
     <div>
@@ -95,4 +76,8 @@
       </dd>
     </div>
   </dl>
+    <em class="text-sm">
+      *These definitions have been shortened for simplicity. See the
+      <a href="/data-manual.pdf" target="_blank">data manual</a> (pg4) for full definitions.
+    </em>
 </div>

@@ -59,7 +59,7 @@
 
 <div>
   <div class="flex flex-col gap-2">
-    <ExpandableFilter displayName="Injury" displayValue={degreesDisplay}>
+    <ExpandableFilter displayName="Injury type" displayValue={degreesDisplay}>
       <MultiCheckboxes
         options={CRASH_DEGREES}
         onchange={(values) => {
