@@ -2,7 +2,7 @@
   import type { Feature } from "./types";
   import InlineColorDot from "./InlineColorDot.svelte";
   import { listIfExists } from "./utils";
-    import { DEGREE_COLOR_MAP } from "./constants";
+  import { DEGREE_COLOR_MAP } from "./constants";
 
   interface Props {
     feature: Feature;
@@ -42,7 +42,7 @@
 
 <div class="textual-content">
   <h3>
-    Cycle crash on {crash.streetName}, {crash.suburb} in
+    Crash on {crash.streetName}, {crash.suburb} in
     {crash.month}
     {crash.year}
   </h3>
@@ -106,19 +106,27 @@
       <dt>Impact</dt>
       <dd>
         {#if crash.fatalities}
-         <InlineColorDot color={DEGREE_COLOR_MAP["Fatal"]}/> {crash.fatalities} {crash.fatalities > 1 ? " fatalities" : " fatality"} (<a href={`https://www.google.com/search?q=${encodeURIComponent(`Fatality ${crash.streetName} ${crash.suburb} ${crash.month} ${crash.year}`)}`} target="_blank">search ↗</a>)
+          <InlineColorDot color={DEGREE_COLOR_MAP["Fatal"]} />
+          {crash.fatalities}
+          {crash.fatalities > 1 ? " fatalities" : " fatality"} (<a
+            href={`https://www.google.com/search?q=${encodeURIComponent(`Fatality ${crash.streetName} ${crash.suburb} ${crash.month} ${crash.year}`)}`}
+            target="_blank">search ↗</a
+          >)
         {/if}
         {#if crash.seriousInjuries}
-         <InlineColorDot color={DEGREE_COLOR_MAP["Serious Injury"]}/> {crash.seriousInjuries} seriously injured
+          <InlineColorDot color={DEGREE_COLOR_MAP["Serious Injury"]} />
+          {crash.seriousInjuries} seriously injured
         {/if}
         {#if crash.moderateInjuries}
-         <InlineColorDot color={DEGREE_COLOR_MAP["Moderate Injury"]}/> {crash.moderateInjuries} moderately injured
+          <InlineColorDot color={DEGREE_COLOR_MAP["Moderate Injury"]} />
+          {crash.moderateInjuries} moderately injured
         {/if}
         {#if crash.minorInjuries}
-         <InlineColorDot color={DEGREE_COLOR_MAP["Minor/Other Injury"]}/> {crash.minorInjuries} minorly injured
+          <InlineColorDot color={DEGREE_COLOR_MAP["Minor/Other Injury"]} />
+          {crash.minorInjuries} minorly injured
         {/if}
-        {#if crash.fatalities+crash.seriousInjuries+crash.moderateInjuries+crash.minorInjuries===0}
-        No injuries
+        {#if crash.fatalities + crash.seriousInjuries + crash.moderateInjuries + crash.minorInjuries === 0}
+          No injuries
         {/if}
       </dd>
     </div>

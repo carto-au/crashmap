@@ -46,7 +46,6 @@
     <div>
       <dt>
         <InlineColorDot color={DEGREE_COLOR_MAP["Serious Injury"]} /> Serious Injury
-        injury
       </dt>
       <dd>
         Someone was admitted to hospital on the same day or day after the crash

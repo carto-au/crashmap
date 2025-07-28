@@ -2,6 +2,7 @@
   import Infobox from "$lib/Infobox.svelte";
   import Map from "$lib/Map.svelte";
   import type { Feature } from "$lib/types";
+  import type { FilterSpecification } from "maplibre-gl";
   import { onMount } from "svelte";
 
   onMount(() => {
@@ -17,11 +18,18 @@
   });
 
   let features: Feature[] = $state([]);
+  let maplibreFilter: FilterSpecification | undefined = $state(undefined);
 </script>
 
 <main class="flex flex-col select-none">
-  <Infobox {features} />
+  <Infobox
+    {features}
+    onfilterchange={(filter) => {
+      maplibreFilter = filter;
+    }}
+  />
   <Map
+    filter={maplibreFilter}
     onfeatures={(f) => {
       features = f;
     }}

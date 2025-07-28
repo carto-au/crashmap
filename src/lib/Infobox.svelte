@@ -1,14 +1,16 @@
 <script lang="ts">
   import { Panel } from "@carto-au/svelte";
-  import type { Feature } from "maplibre-gl";
+  import type { Feature, FilterSpecification } from "maplibre-gl";
   import WelcomeContent from "./WelcomeContent.svelte";
   import CrashDetails from "./CrashDetails.svelte";
+  import Filters from "./Filters.svelte";
 
   interface Props {
     features: Feature[];
+    onfilterchange: (filter: FilterSpecification) => void;
   }
 
-  let { features }: Props = $props();
+  let { features, onfilterchange }: Props = $props();
 
   // Only start expanded if they've never visited the site before (or not since the latest update)
   const showHideableInitially =
@@ -42,7 +44,7 @@
 
   {#snippet staticFooter()}
     <div class="px-3 py-1.5 sm:pb-3">
-      <div class="text-xs">
+      <div class="mb-3 text-xs">
         Built by <a href="https://carto.au" target="_blank">Carto Australia</a>.
         Data from
         <a
@@ -50,8 +52,7 @@
           target="_blank">Transport NSW</a
         >. In beta 🚧
       </div>
-      <!-- <br /><br /><br />
-			FILTERS HERE -->
+      <Filters {onfilterchange} />
     </div>
   {/snippet}
 

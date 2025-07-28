@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
-  import maplibre from "maplibre-gl";
+  import maplibre, { type FilterSpecification } from "maplibre-gl";
   import "maplibre-gl/dist/maplibre-gl.css";
   import * as pmtiles from "pmtiles";
   import { DEGREE_COLOR_MAP } from "$lib/constants";
@@ -9,23 +9,15 @@
   const protocol = new pmtiles.Protocol();
   maplibre.addProtocol("pmtiles", protocol.tile);
 
-  // TODO: Make reactive
-  const filter = [
-    "any",
-    ["in", "keyTuType", "Pedal cycle"],
-    ["in", "otherTuType", "Pedal cycle"],
-  ];
-
   interface Props {
+    filter: FilterSpecification | undefined;
     onfeatures: (features: Feature[]) => void;
   }
 
-  const { onfeatures }: Props = $props();
+  const { filter, onfeatures }: Props = $props();
 
   let map: maplibre.Map;
   let mapContainer: HTMLDivElement;
-
-  const handleClick = (e: any) => onfeatures(e.features ?? []);
 
   onMount(() => {
     map = new maplibre.Map({
@@ -48,8 +40,8 @@
       },
     });
 
-    // Register this BEFORE the other click handlers so it doesn't set currentCrash to null after setting to value
-    map.on("click", handleClick);
+    // Register this BEFORE the other click handlers so it doesn't set features to [] AFTER setting to a real value
+    map.on("click", () => onfeatures([]));
 
     // Add controls
     map.addControl(new maplibre.NavigationControl({}));
@@ -66,24 +58,36 @@
     map.on("load", () => {
       map.addSource("crashes", {
         type: "vector",
-        url: "pmtiles://https://src.carto.au/crashes.pmtiles",
+        url: "pmtiles://http://localhost:3001/crashes.pmtiles",
       });
 
-      Object.entries(DEGREE_COLOR_MAP).forEach(([degree, color]) => {
-        map.addLayer({
-          id: `crashes-${degree}`,
-          type: "circle",
-          source: "crashes",
-          "source-layer": "crashes",
-          filter: ["all", filter, ["==", "deg", degree]],
-          paint: {
-            "circle-radius": 10,
-            "circle-color": color,
-          },
-        });
-        map.on("click", `crashes-${degree}`, handleClick);
+      map.addLayer({
+        id: "crashes",
+        type: "circle",
+        source: "crashes",
+        "source-layer": "crashes",
+        filter,
+        paint: {
+          "circle-radius": 10,
+          "circle-opacity": 0.8,
+          "circle-color": [
+            "match",
+            ["get", "deg"],
+            ...Object.entries(DEGREE_COLOR_MAP).flatMap(([degree, color]) => [
+              degree,
+              color,
+            ]),
+            "black",
+          ],
+        },
       });
+      map.on("click", "crashes", (e) => onfeatures(e.features ?? []));
     });
+  });
+
+  $effect(() => {
+    if (map.loaded()) map.setFilter("crashes", filter);
+    filter; // Needed for Svelte to detect dependency
   });
 
   onDestroy(() => {
