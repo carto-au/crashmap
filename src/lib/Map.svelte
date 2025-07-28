@@ -58,7 +58,7 @@
     map.on("load", () => {
       map.addSource("crashes", {
         type: "vector",
-        url: "pmtiles://http://localhost:3001/crashes.pmtiles",
+        url: "pmtiles://https://src.carto.au/crashes.pmtiles",
       });
 
       map.addLayer({
@@ -72,9 +72,9 @@
           "circle-opacity": 0.8,
           "circle-color": [
             "match",
-            ["get", "deg"],
+            ["get", "s"],
             ...Object.entries(DEGREE_COLOR_MAP).flatMap(([degree, color]) => [
-              degree,
+              Number(degree),
               color,
             ]),
             "black",

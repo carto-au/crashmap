@@ -36,6 +36,7 @@
     "@steeze-ui/material-design-icons": "^1.1.2",
     "@steeze-ui/svelte-icon": "^1.6.2",
     "maplibre-gl": "^5.6.1",
-    "pmtiles": "^4.3.0"
+    "pmtiles": "^4.3.0",
+    "unzipit": "^1.4.3"
   }
 }

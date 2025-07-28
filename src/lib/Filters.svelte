@@ -10,12 +10,10 @@
     DEGREE_SHORTNAME_MAP,
     ROAD_USER_ICON_MAP,
     ROAD_USER_SHORTNAME_MAP,
-    ROAD_USER_TU_GROUPS_MAP,
     ROAD_USERS,
     RoadUser,
   } from "./constants";
   import type { FilterSpecification } from "maplibre-gl";
-  import { Filter } from "@steeze-ui/material-design-icons";
 
   interface Props {
     onfilterchange: (filter: FilterSpecification) => void;
@@ -50,13 +48,8 @@
 
   let maplibreFilter: FilterSpecification = $derived([
     "all",
-    [
-      "any",
-      ...roadUsers.flatMap((r) =>
-        ROAD_USER_TU_GROUPS_MAP[r].map((g) => ["in", g, ["get", "tuGroups"]]),
-      ),
-    ],
-    ["in", ["get", "deg"], ["literal", degrees]],
+    ["any", ...roadUsers.map((r) => ["in", r, ["get", "u"]])],
+    ["in", ["get", "s"], ["literal", degrees]],
   ]);
 
   $effect(() => {
@@ -84,7 +77,7 @@
       <MultiCheckboxes
         options={ROAD_USERS}
         onchange={(values) => {
-          roadUsers = values;
+          roadUsers = values as RoadUser[];
         }}
         initialValues={roadUsers}
       >

@@ -3,10 +3,10 @@
   import { SvelteSet } from "svelte/reactivity";
 
   interface Props {
-    initialValues: string[];
-    options: string[];
-    displayOption: Snippet<[string]>;
-    onchange: (values: string[]) => void;
+    initialValues: unknown[];
+    options: unknown[];
+    displayOption: Snippet<[unknown]>;
+    onchange: (values: unknown[]) => void;
   }
 
   let { initialValues, options, displayOption, onchange }: Props = $props();

@@ -9,11 +9,11 @@ import {
 } from "@steeze-ui/material-design-icons";
 
 export enum CrashDegree {
-  Fatal = "Fatal",
-  Serious = "Serious Injury",
-  Moderate = "Moderate Injury",
-  Minor = "Minor/Other Injury",
-  NonCasualty = "Non-casualty (towaway)",
+  Fatal,
+  Serious,
+  Moderate,
+  Minor,
+  NonCasualty,
 }
 
 export const CRASH_DEGREES = [
@@ -41,13 +41,13 @@ export const DEGREE_SHORTNAME_MAP = {
 };
 
 export enum RoadUser {
-  Pedestrian = "Pedestrian",
-  Bicycle = "Bicycle",
-  Motorcycle = "Motorcycle",
-  Car = "Car",
-  Truck = "Truck",
-  Bus = "Bus",
-  Other = "Other",
+  Pedestrian,
+  Bicycle,
+  Motorcycle,
+  Car,
+  Truck,
+  Bus,
+  Other,
 }
 
 export const ROAD_USERS = [
@@ -59,20 +59,6 @@ export const ROAD_USERS = [
   RoadUser.Bus,
   RoadUser.Other,
 ];
-
-export const ROAD_USER_TU_GROUPS_MAP = {
-  [RoadUser.Pedestrian]: ["Pedestrian"],
-  [RoadUser.Bicycle]: ["Pedal cycle"],
-  [RoadUser.Motorcycle]: ["Motorcycle"],
-  [RoadUser.Car]: ["Car/car derivative"],
-  [RoadUser.Truck]: ["Light truck", "Heavy rigid truck", "Articulated truck"],
-  [RoadUser.Bus]: ["Bus"],
-  [RoadUser.Other]: [
-    "Other or unknown",
-    "Other motor vehicle",
-    "Non-motorised vehicle",
-  ],
-};
 
 export const ROAD_USER_ICON_MAP = {
   [RoadUser.Pedestrian]: DirectionsWalk,
