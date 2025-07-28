@@ -69,7 +69,7 @@
         filter,
         paint: {
           "circle-radius": 10,
-          "circle-opacity": 0.8,
+          // "circle-opacity": 0.8,
           "circle-color": [
             "match",
             ["get", "s"],
