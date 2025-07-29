@@ -37,6 +37,7 @@
     "@steeze-ui/svelte-icon": "^1.6.2",
     "hyparquet": "^1.17.1",
     "maplibre-gl": "^5.6.1",
-    "pmtiles": "^4.3.0"
+    "pmtiles": "^4.3.0",
+    "svelte-range-slider-pips": "^4.0.7"
   }
 }

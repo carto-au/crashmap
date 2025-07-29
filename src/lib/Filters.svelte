@@ -2,12 +2,15 @@
   import ExpandableFilter from "./ExpandableFilter.svelte";
   import MultiCheckboxes from "./MultiCheckboxes.svelte";
   import { Icon } from "@steeze-ui/svelte-icon";
+  import RangeSlider from "svelte-range-slider-pips";
   import InlineColorDot from "./InlineColorDot.svelte";
   import {
     CRASH_DEGREES,
     CrashDegree,
     DEGREE_COLOR_MAP,
     DEGREE_SHORTNAME_MAP,
+    MAX_YEAR,
+    MIN_YEAR,
     ROAD_USER_ICON_MAP,
     ROAD_USER_SHORTNAME_MAP,
     ROAD_USERS,
@@ -50,13 +53,28 @@
             .join(roadUsersMode === RoadUsersMode.And ? " & " : ", "),
   );
 
+  let dateRange = $state([MIN_YEAR, MAX_YEAR]);
+  let dateRangeDisplay = $derived(
+    dateRange[0] === dateRange[1]
+      ? dateRange[0].toString()
+      : dateRange.join("-"),
+  );
+
   let maplibreFilter: FilterSpecification = $derived([
     "all",
+    // Injury type filter
+    ["in", ["get", "s"], ["literal", degrees]],
+    // Road users filter
     [
       roadUsersMode === RoadUsersMode.And ? "all" : "any",
       ...roadUsers.map((r) => ["in", r, ["get", "u"]]),
     ],
-    ["in", ["get", "s"], ["literal", degrees]],
+    // Date range filter
+    [
+      "all",
+      ["<=", dateRange[0], ["get", "y"]],
+      [">=", dateRange[1], ["get", "y"]],
+    ],
   ]);
 
   $effect(() => {
@@ -121,6 +139,19 @@
           </div>
         {/snippet}
       </MultiCheckboxes>
+    </ExpandableFilter>
+    <ExpandableFilter displayName="Date range" displayValue={dateRangeDisplay}>
+      <RangeSlider
+        min={MIN_YEAR}
+        max={MAX_YEAR}
+        range
+        float
+        values={[MIN_YEAR, MAX_YEAR]}
+        on:stop={(e) => {
+          console.log("E", JSON.stringify(e.detail));
+          dateRange = e.detail.values;
+        }}
+      />
     </ExpandableFilter>
   </div>
 </div>

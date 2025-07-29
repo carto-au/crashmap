@@ -84,3 +84,6 @@ export const ROAD_USER_SHORTNAME_MAP = {
   [RoadUser.Bus]: "Busses",
   [RoadUser.Other]: "Other",
 };
+
+export const MIN_YEAR = 2016;
+export const MAX_YEAR = 2023;

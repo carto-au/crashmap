@@ -94,3 +94,15 @@ body {
     }
   }
 }
+
+/** See https://simeydotme.github.io/svelte-range-slider-pips/en/styling/ */
+.rangeSlider {
+  /* Focused styles */
+  --slider-accent: #155dfc;
+  --slider-accent-100: #155dfc;
+  /** Unfocused styles */
+  --slider-base: #155dfc;
+  --slider-base-100: #155dfc;
+  /* --slider-bg: #155dfc; */
+  /* --slider-fg: #155dfc; */
+}

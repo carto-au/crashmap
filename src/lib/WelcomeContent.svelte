@@ -5,8 +5,8 @@
 
 <div class="textual-content">
   <p>
-    This map shows crashes from 2016 to 2023 that were reported to the police
-    and involved an injury or tow-away.
+    This map shows crashes that were reported to the police and involved an
+    injury or tow-away.
   </p>
   <!-- <ul>
       <li>Were reported to police</li>
