@@ -50,7 +50,7 @@
         <a
           href="https://opendata.transport.nsw.gov.au/dataset/nsw-crash-data"
           target="_blank">Transport NSW</a
-        >. In beta 🚧
+        >.
       </div>
       <Filters {onfilterchange} />
     </div>
