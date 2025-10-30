@@ -58,7 +58,7 @@
     map.on("load", () => {
       map.addSource("crashes", {
         type: "vector",
-        url: "pmtiles://https://src.carto.au/crashes.pmtiles",
+        url: "pmtiles://https://src.carto.au/nsw/crashes-pmtiles/crashes.pmtiles",
       });
 
       map.addLayer({

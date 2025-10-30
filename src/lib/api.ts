@@ -4,7 +4,7 @@ import {
   type AsyncBuffer,
 } from "hyparquet";
 
-const API_FILE_URL = "https://src.carto.au/crashes.parquet";
+const API_FILE_URL = "https://src.carto.au/nsw/crashes-pmtiles/crashes.parquet";
 
 // Cache file object within session to save HEAD on requests
 let file: AsyncBuffer | null = null;
